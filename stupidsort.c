@@ -22,7 +22,8 @@ int isSort(int *array, int n) // 1 if sorted
 
 void stupidsort(int *array, int n)
 {
-	int iterations = 0, i = 0, k;
+	int i = 0, k;
+	long int iterations = 0;
 	while (!isSort(array, n))
 	{
 		k = rand() % n;
@@ -30,6 +31,7 @@ void stupidsort(int *array, int n)
 		iterations++;
 		i = (i++) % n;
 	}
+	printf("\nCompleted in %d iterations\n", iterations);
 }
 
 void arrayprint(int *array, int n)
@@ -40,16 +42,19 @@ void arrayprint(int *array, int n)
 	printf("\n"); // I'm lazy, fight me.
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
 		int *array, n, i;
 		srand(time(NULL));
-		printf("How large is your dataset?\n");
-		scanf("%d", &n);
+		if (argc > 2 || argc == 0)
+			printf("Proper Syntax './a.out [dataset size]'\n");
+		n = atoi(argv[1]);
+		// printf("How large is your dataset?\n");
+		// scanf("%d", &n);
 		array = calloc(n, sizeof(int));
 		for (i = 0; i < n; i++)
 			array[i] = rand() % 100;
-		printf("\narray populated\n");
+		printf("array populated\n");
 		arrayprint(array, n);
 		stupidsort(array, n);
 		arrayprint(array, n);
