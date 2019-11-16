@@ -85,5 +85,6 @@ int main(int argc, char **argv)
 		printf("\nSorted Array: \n" );
 		arrayprint(array, n);
 		printf("\nCompleted in %llu swaps.\n", swaps);
+		free(array);
 		return 0;
 }
